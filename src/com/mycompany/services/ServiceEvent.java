@@ -133,6 +133,13 @@ public class ServiceEvent {
            String url = Statics.BASE_URL + "/admin/Participer/"+id;
         req.setUrl(url);
         req.setPost(false);
+        req.addResponseListener((e) -> {
+            String str = new String(req.getResponseData());
+            System.out.println("Event == " + str);
+        });
+
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        //return resultOK;
         
         }
         
